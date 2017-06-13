@@ -49,6 +49,7 @@ summary(activity_date$total_steps)
 
 
 
+
 ## What is the average daily activity pattern?
 1. Time series plot
 ```{r  time series plot,  echo = TRUE}
@@ -62,11 +63,17 @@ with(activity_interval, plot(interval, mean_steps, type = "l",
     main = "Time series plot of mean of steps taken per 5-minute interval") )
 ```
 
+
+
+
+
 2. 5-minute interval, contains the maximum numbers of steps
 ```{r maximum numbers of steps,  echo = TRUE}
 max_interval <- which.max(activity_interval$mean_steps)
 activity_interval[max_interval,]
 ```
+
+
 
 
 ## Imputing missing values
@@ -99,8 +106,12 @@ new_date <- group_by(new, date) %>%
 hist(new_date$total_steps,     
     xlab = "Number of steps",
     ylab = "Number of days",
-    main = "Histogram of Total number of steps taken per day")
+    main = "Histogram of Total number of steps taken per day \n 
+    after imputing missing data")
 ```
+
+
+
 
 4. Report the mean and median total number of steps taken per day. 
 ```{r,  echo = TRUE}
