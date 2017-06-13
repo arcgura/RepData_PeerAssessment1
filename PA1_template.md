@@ -1,13 +1,6 @@
----
-title: "Reproducible Research: Peer Assignment 1"
-author: "Jong-dae Kim"
-date: '2017 6 12 '
-output: 
-  html_document: 
-    fig_caption: yes
-    keep_md: yes
-    toc: yes
----
+# Reproducible Research: Peer Assignment 1
+Jong-dae Kim  
+2017 6 12   
 This is the R Markdown for the Preer Assignment 1 of "Reproducible Research".
 I am Jong-dae Kim in South Korea.
 
@@ -23,6 +16,26 @@ Let get start.
 
 ```r
 library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
 library(ggplot2)
 ```
 
@@ -47,7 +60,7 @@ hist(as.numeric(activity_date$total_steps ),
     main = "Histogram of Total number of steps taken per day")
 ```
 
-![plot of chunk calcuate mean totla numberof steps](figure/calcuate mean totla numberof steps-1.png)
+![](PA1_template_files/figure-html/calcuate mean totla numberof steps-1.png)<!-- -->
 
 ```r
 summary(activity_date$total_steps)
@@ -70,7 +83,7 @@ ggplot(activity_interval, aes(x=interval, y=mean_steps)) + geom_point() +
         title = "Time series plot of mean of steps taken per 5-minute interval")
 ```
 
-![plot of chunk time series plot](figure/time series plot-1.png)
+![](PA1_template_files/figure-html/time series plot-1.png)<!-- -->
 
 ```r
     labs
@@ -94,7 +107,7 @@ with(activity_interval, plot(interval, mean_steps, type = "l",
     main = "Time series plot of mean of steps taken per 5-minute interval") )
 ```
 
-![plot of chunk time series plot](figure/time series plot-2.png)
+![](PA1_template_files/figure-html/time series plot-2.png)<!-- -->
 
 2. 5-minute interval, contains the maximum numbers of steps
 
@@ -168,7 +181,7 @@ hist(new_date$total_steps,
     main = "Histogram of Total number of steps taken per day")
 ```
 
-![plot of chunk make a histogram](figure/make a histogram-1.png)
+![](PA1_template_files/figure-html/make a histogram-1.png)<!-- -->
 
 4. Report the mean and median total number of steps taken per day. 
 
@@ -196,7 +209,7 @@ new_interval <- group_by(new, interval, wday) %>% summarise(avr_steps = sum(step
 ggplot(new_interval, aes(interval, avr_steps, color = wday)) + geom_line() 
 ```
 
-![plot of chunk weekdys and weekends](figure/weekdys and weekends-1.png)
+![](PA1_template_files/figure-html/weekdys and weekends-1.png)<!-- -->
 
 
 
