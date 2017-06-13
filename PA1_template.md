@@ -40,7 +40,7 @@ hist(as.numeric(activity_date$total_steps ),
     main = "Histogram of Total number of steps taken per day")
 ```
 
-![](PA1_template_files/figure-html/mean total number-1.png)<!-- -->
+![](PA1_template_files/figure-html/mean_total_number-1.png)<!-- -->
 
 ```r
 summary(activity_date$total_steps)
@@ -64,7 +64,7 @@ ggplot(activity_interval, aes(x=interval, y=mean_steps)) + geom_point() +
         title = "Time series plot of mean of steps taken per 5-minute interval")
 ```
 
-![](PA1_template_files/figure-html/average daily activity-1.png)<!-- -->
+![](PA1_template_files/figure-html/average_daily_activity-1.png)<!-- -->
 
 ```r
 with(activity_interval, plot(interval, mean_steps, type = "l", 
@@ -72,7 +72,7 @@ with(activity_interval, plot(interval, mean_steps, type = "l",
     main = "Time series plot of mean of steps taken per 5-minute interval") )
 ```
 
-![](PA1_template_files/figure-html/average daily activity-2.png)<!-- -->
+![](PA1_template_files/figure-html/average_daily_activity-2.png)<!-- -->
 
 
 
@@ -153,7 +153,7 @@ hist(new_date$total_steps,
     after imputing missing data")
 ```
 
-![](PA1_template_files/figure-html/imputing missing data-1.png)<!-- -->
+![](PA1_template_files/figure-html/imputing_missingd_ata-1.png)<!-- -->
 
 
 
@@ -181,10 +181,11 @@ new <- cbind(new, wday)
 new[new$wday == 0 | new$wday == 6, 4] <- "weekends"
 new[!(new$wday == "weekends"), 4] <- "weekdays"
 new_interval <- group_by(new, interval, wday) %>% summarise(avr_steps = sum(steps))
-ggplot(new_interval, aes(interval, avr_steps, color = wday)) + geom_line() 
+ggplot(new_interval, aes(interval, avr_steps, color = wday)) + geom_line() +
+    facet_grid(.~wday)
 ```
 
-![](PA1_template_files/figure-html/differences in activity-1.png)<!-- -->
+![](PA1_template_files/figure-html/differences_in_activity-1.png)<!-- -->
 
 
 

@@ -37,7 +37,7 @@ activity <- read.csv("activity.csv")
 
 
 ## What is mean total number of steps taken per day?
-```{r mean total number,  echo = TRUE}
+```{r mean_total_number,  echo = TRUE}
 activity_date <- group_by(activity, date) %>%
      summarize(total_steps = sum(steps))
 hist(as.numeric(activity_date$total_steps ),
@@ -52,7 +52,7 @@ summary(activity_date$total_steps)
 
 ## What is the average daily activity pattern?
 1. Time series plot
-```{r  average daily activity,  echo = TRUE}
+```{r  average_daily_activity,  echo = TRUE}
 activity_interval <- group_by(activity, interval) %>% summarize(mean_steps = mean(steps, na.rm=TRUE))
 ggplot(activity_interval, aes(x=interval, y=mean_steps)) + geom_point() +
     labs(x = "5-Minute Interval", y = "Mean of Steps", 
@@ -99,7 +99,7 @@ sum(is.na(new$steps))
 
 3. Make a histogram of the total number of steps taken each day 
 
-```{r imputing missing data,  echo = TRUE}
+```{r imputing_missingd_ata,  echo = TRUE}
 new_date <- group_by(new, date) %>%
     summarize(total_steps = sum(steps))
 hist(new_date$total_steps,     
@@ -122,14 +122,15 @@ There is a little impact of imputing missing data on the estimates of the total 
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
-```{r differences in activity,  echo = TRUE}
+```{r differences_in_activity,  echo = TRUE}
 
 wday <- unclass(strptime(new$date, "%Y-%m-%d"))$wday
 new <- cbind(new, wday)
 new[new$wday == 0 | new$wday == 6, 4] <- "weekends"
 new[!(new$wday == "weekends"), 4] <- "weekdays"
 new_interval <- group_by(new, interval, wday) %>% summarise(avr_steps = sum(steps))
-ggplot(new_interval, aes(interval, avr_steps, color = wday)) + geom_line() 
+ggplot(new_interval, aes(interval, avr_steps, color = wday)) + geom_line() +
+    facet_grid(.~wday)
 
 ```
 
