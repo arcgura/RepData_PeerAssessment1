@@ -27,7 +27,7 @@ library(ggplot2)
 
 ## Loading the data
 ```{r load the data}
-activity <- read.csv("~/dropbox/r/coursera/c5w2/activity.csv")
+activity <- read.csv("activity.csv")
 ```
 
 
@@ -109,9 +109,10 @@ There is a little impact of imputing missing data on the estimates of the total 
 ## Are there differences in activity patterns between weekdays and weekends?
 
 ```{r weekdys and weekends}
-new$date <- as.Date(new$date, "%Y-%m-%d")
-new <- mutate(new, wday = weekdays(date))
-new[new$wday == "Sunday" | new$wday == "Saturday", 4] <- "weekends"
+
+wday <- unclass(strptime(new$date, "%Y-%m-%d"))$wday
+new <- cbind(new, wday)
+new[new$wday == 0 | new$wday == 6, 4] <- "weekends"
 new[!(new$wday == "weekends"), 4] <- "weekdays"
 new_interval <- group_by(new, interval, wday) %>% summarise(avr_steps = sum(steps))
 ggplot(new_interval, aes(interval, avr_steps, color = wday)) + geom_line() 
@@ -123,6 +124,10 @@ ggplot(new_interval, aes(interval, avr_steps, color = wday)) + geom_line()
 
 
 There was more steps on weekends than on weekdays, especially in the morning.
+
+
+
+
 
 
 
