@@ -2,7 +2,11 @@
 title: "Reproducible Research: Peer Assignment 1"
 author: "Jong-dae Kim"
 date: '2017 6 12 '
-output: html_document
+output: 
+  html_document: 
+    fig_caption: yes
+    keep_md: yes
+    toc: yes
 ---
 This is the R Markdown for the Preer Assignment 1 of "Reproducible Research".
 I am Jong-dae Kim in South Korea.
