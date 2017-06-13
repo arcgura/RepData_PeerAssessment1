@@ -40,10 +40,7 @@ hist(as.numeric(activity_date$total_steps ),
     main = "Histogram of Total number of steps taken per day")
 ```
 
-![](./PA1_template_files/figure-html/calcuate mean totla numberof steps-1.png)<!-- -->
-
-
-
+![](PA1_template_files/figure-html/calcuate mean totla numberof steps-1.png)
 
 ```r
 summary(activity_date$total_steps)
@@ -67,23 +64,7 @@ ggplot(activity_interval, aes(x=interval, y=mean_steps)) + geom_point() +
         title = "Time series plot of mean of steps taken per 5-minute interval")
 ```
 
-![](./PA1_template_files/figure-html/time series plot-1.png)<!-- -->
-
-```r
-    labs
-```
-
-```
-## function (...) 
-## {
-##     args <- list(...)
-##     if (is.list(args[[1]])) 
-##         args <- args[[1]]
-##     args <- rename_aes(args)
-##     structure(args, class = "labels")
-## }
-## <environment: namespace:ggplot2>
-```
+![](PA1_template_files/figure-html/time series plot-1.png)
 
 ```r
 with(activity_interval, plot(interval, mean_steps, type = "l", 
@@ -91,7 +72,7 @@ with(activity_interval, plot(interval, mean_steps, type = "l",
     main = "Time series plot of mean of steps taken per 5-minute interval") )
 ```
 
-![](./PA1_template_files/figure-html/time series plot-2.png)<!-- -->
+![](PA1_template_files/figure-html/time series plot-2.png)
 
 
 
@@ -172,8 +153,7 @@ hist(new_date$total_steps,
     after imputing missing data")
 ```
 
-![](./PA1_template_files/figure-html/make a histogram-1.png)<!-- -->
-
+![](PA1_template_files/figure-html/make a histogram-1.png)
 
 
 
@@ -203,7 +183,7 @@ new_interval <- group_by(new, interval, wday) %>% summarise(avr_steps = sum(step
 ggplot(new_interval, aes(interval, avr_steps, color = wday)) + geom_line() 
 ```
 
-![](./PA1_template_files/figure-html/weekdys and weekends-1.png)<!-- -->
+![](PA1_template_files/figure-html/weekdys and weekends-1.png)
 
 
 

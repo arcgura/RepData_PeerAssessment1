@@ -57,7 +57,6 @@ activity_interval <- group_by(activity, interval) %>% summarize(mean_steps = mea
 ggplot(activity_interval, aes(x=interval, y=mean_steps)) + geom_point() +
     labs(x = "5-Minute Interval", y = "Mean of Steps", 
         title = "Time series plot of mean of steps taken per 5-minute interval")
-    labs
 with(activity_interval, plot(interval, mean_steps, type = "l", 
     xlab = "5-Minute Interval",ylab = "Mean of Steps",
     main = "Time series plot of mean of steps taken per 5-minute interval") )
