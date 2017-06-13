@@ -203,8 +203,6 @@ There was more steps on weekends than on weekdays, especially in the morning.
 
 
 
-new
-
 
 
 

@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Loading packages
-```{r load packages, results='hide'}
+```{r load packages,  echo = TRUE , results='hide'}
 library(dplyr)
 library(ggplot2)
 ```
@@ -26,14 +26,14 @@ library(ggplot2)
 
 
 ## Loading the data
-```{r load the data}
+```{r load the data,   echo = TRUE}
 activity <- read.csv("activity.csv")
 ```
 
 
 
 ## What is mean total number of steps taken per day?
-```{r calcuate mean totla numberof steps}
+```{r calcuate mean totla numberof steps,  echo = TRUE}
 activity_date <- group_by(activity, date) %>%
      summarize(total_steps = sum(steps))
 hist(as.numeric(activity_date$total_steps ),
@@ -47,7 +47,7 @@ summary(activity_date$total_steps)
 
 ## What is the average daily activity pattern?
 1. Time series plot
-```{r  time series plot}
+```{r  time series plot,  echo = TRUE}
 activity_interval <- group_by(activity, interval) %>% summarize(mean_steps = mean(steps, na.rm=TRUE))
 ggplot(activity_interval, aes(x=interval, y=mean_steps)) + geom_point() +
     labs(x = "5-Minute Interval", y = "Mean of Steps", 
@@ -59,7 +59,7 @@ with(activity_interval, plot(interval, mean_steps, type = "l",
 ```
 
 2. 5-minute interval, contains the maximum numbers of steps
-```{r maximum numbers of steps}
+```{r maximum numbers of steps,  echo = TRUE}
 max_interval <- which.max(activity_interval$mean_steps)
 activity_interval[max_interval,]
 ```
@@ -68,14 +68,14 @@ activity_interval[max_interval,]
 ## Imputing missing values
 
 1. Calculate and report the total number of missing values in the dataset 
-```{r Imputing missing values}
+```{r Imputing missing values,  echo = TRUE}
 sum(is.na(activity$date))
 sum(is.na(activity$interval))
 sum(is.na(activity$steps))
 ```
 
 2. Create a new dataset with the missing data filled in(the mean for that 5-minute interval)
-```{r}
+```{r,  echo = TRUE}
 new <- activity
 for (i in 1:17568){
     if (is.na(new[i,1]) == TRUE) {
@@ -89,7 +89,7 @@ sum(is.na(new$steps))
 
 3. Make a histogram of the total number of steps taken each day 
 
-```{r make a histogram}
+```{r make a histogram,  echo = TRUE}
 new_date <- group_by(new, date) %>%
     summarize(total_steps = sum(steps))
 hist(new_date$total_steps,     
@@ -99,7 +99,7 @@ hist(new_date$total_steps,
 ```
 
 4. Report the mean and median total number of steps taken per day. 
-```{r}
+```{r,  echo = TRUE}
 summary(new_date$total_steps)
 ```
 
@@ -108,7 +108,7 @@ There is a little impact of imputing missing data on the estimates of the total 
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
-```{r weekdys and weekends}
+```{r weekdys and weekends,  echo = TRUE}
 
 wday <- unclass(strptime(new$date, "%Y-%m-%d"))$wday
 new <- cbind(new, wday)
